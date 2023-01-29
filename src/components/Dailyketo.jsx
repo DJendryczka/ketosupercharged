@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 
 const Dailyketo = () => {
 
@@ -20,12 +21,31 @@ const Dailyketo = () => {
   return <div>
     {daily.map((recipe) =>{
         return(
-            <div>
-                <p>{recipe.title}</p>
-            </div>
+            <Wrapper key={recipe.id}>
+                <h3>Radndom recipes</h3>
+                {daily.map((recipe) => {
+                    return(
+                        <Card>
+                           <p>{recipe.title}</p>
+                           <img src={recipe.image} alt={recipe.title} />
+                        </Card>
+                    )
+                })}
+            </Wrapper>
         );
     })}
   </div>;
 };
+const Wrapper = styled.div`
+    margin: 5rem 0rem
+`
+const Card = styled.div`
+    min-height: 25rem;
+    border-radius: 2rem;
+    overflow: hidden;
+    img{
+        border-radius: 2rem;
+    }
+`
 
 export default Dailyketo;
