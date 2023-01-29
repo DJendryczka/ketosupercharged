@@ -1,26 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const Dailyketo = () => {
+
+    const [daily, setDaily] = useState([]);
+
   useEffect(() => {
     getDaily();
   }, []);
 
   const getDaily = async () => {
-    const options = {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": `$process.env.REACT_APP_API_KEY`,
-        "X-RapidAPI-Host": "keto-diet.p.rapidapi.com",
-      },
-    };
-
-    fetch(`https://keto-diet.p.rapidapi.com/`, options)
-      .then((response) => response.json())
-      .then((response) => console.log(response))
-      .catch((err) => console.error(err));
+    const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`)
+    const data = await api.json();
+    setDaily(data.recipes)
+   
+      
+      
   };
 
-  return <div>Dailyketo</div>;
+  return <div>
+    {daily.map((recipe) =>{
+        return(
+            <div>
+                <p>{recipe.title}</p>
+            </div>
+        );
+    })}
+  </div>;
 };
 
 export default Dailyketo;
