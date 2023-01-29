@@ -9,7 +9,7 @@ const Dailyketo = () => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "cbcf546d17msh20d13a329f25b2dp116eadjsn57abdd74937c",
+        "X-RapidAPI-Key": `$process.env.REACT_APP_API_KEY`,
         "X-RapidAPI-Host": "keto-diet.p.rapidapi.com",
       },
     };
