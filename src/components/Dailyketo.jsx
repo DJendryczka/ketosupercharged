@@ -8,7 +8,7 @@ const Dailyketo = () => {
 
   useEffect(() => {
     getDaily();
-  },);
+  },[]);
 
   const options = {
     method: 'GET',
@@ -19,6 +19,8 @@ const Dailyketo = () => {
   };
   
   const getDaily = async () =>{
+
+
     const api = await fetch('https://keto-diet.p.rapidapi.com/?protein_in_grams__lt=15&protein_in_grams__gt=5', options)
     const data = await api.json();
    console.log(data)
@@ -30,7 +32,7 @@ const Dailyketo = () => {
   return (
     <div>
       <Wrapper>
-        <h3>Radndom recipes</h3>
+        <h3>Radndom Keto recipes</h3>
         <Splide options={{
             perPage: 4,
             arrows: false,
@@ -46,6 +48,7 @@ const Dailyketo = () => {
                 <Card>
                   <p>{recipe.recipe}</p>
                   <img src={recipe.image} alt={recipe.title} />
+                  <Gradient />
                 </Card>
               </SplideSlide>
             );
@@ -87,5 +90,13 @@ const Card = styled.div`
     align-items: center;
   }
 `;
+const Gradient = styled.div`
+  z-index: 3;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,5));
+`
 
 export default Dailyketo;
