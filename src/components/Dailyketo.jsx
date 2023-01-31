@@ -8,15 +8,24 @@ const Dailyketo = () => {
 
   useEffect(() => {
     getDaily();
-  }, []);
+  },);
 
-  const getDaily = async () => {
-    const api = await fetch(
-      `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`
-    );
-    const data = await api.json();
-    setDaily(data.recipes);
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': `${process.env.REACT_APP_API_RAPID}`,
+      'X-RapidAPI-Host': 'keto-diet.p.rapidapi.com'
+    }
   };
+  
+  const getDaily = async () =>{
+    const api = await fetch('https://keto-diet.p.rapidapi.com/?protein_in_grams__lt=15&protein_in_grams__gt=5', options)
+    const data = await api.json();
+   console.log(data)
+   setDaily(data);
+  } 
+
+ 
 
   return (
     <div>
@@ -35,7 +44,7 @@ const Dailyketo = () => {
             return (
               <SplideSlide>
                 <Card>
-                  <p>{recipe.title}</p>
+                  <p>{recipe.recipe}</p>
                   <img src={recipe.image} alt={recipe.title} />
                 </Card>
               </SplideSlide>
