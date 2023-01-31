@@ -32,7 +32,7 @@ const Dailyketo = () => {
   return (
     <div>
       <Wrapper>
-        <h3>Radndom Keto recipes</h3>
+        <h3>Random Keto recipes</h3>
         <Splide options={{
             perPage: 4,
             arrows: false,
@@ -62,7 +62,7 @@ const Wrapper = styled.div`
   margin: 4rem 0rem;
 `;
 const Card = styled.div`
-  min-height: 25rem;
+  min-height: 20rem;
   border-radius: 2rem;
   overflow: hidden;
   img {
