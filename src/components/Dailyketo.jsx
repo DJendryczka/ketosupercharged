@@ -2,53 +2,55 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
+import { Link } from "react-router-dom";
 
 const Dailyketo = () => {
   const [daily, setDaily] = useState([]);
 
   useEffect(() => {
     getDaily();
-  },[]);
+  }, []);
 
   const options = {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'X-RapidAPI-Key': `${process.env.REACT_APP_API_RAPID}`,
-      'X-RapidAPI-Host': 'keto-diet.p.rapidapi.com'
-    }
+      "X-RapidAPI-Key": `${process.env.REACT_APP_API_RAPID}`,
+      "X-RapidAPI-Host": "keto-diet.p.rapidapi.com",
+    },
   };
-  
-  const getDaily = async () =>{
 
-
-    const api = await fetch('https://keto-diet.p.rapidapi.com/?protein_in_grams__lt=15&protein_in_grams__gt=5', options)
+  const getDaily = async () => {
+    const api = await fetch(
+      "https://keto-diet.p.rapidapi.com/?protein_in_grams__lt=15&protein_in_grams__gt=5",
+      options
+    );
     const data = await api.json();
-   console.log(data)
-   setDaily(data);
-  } 
-
- 
+    console.log(data);
+    setDaily(data);
+  };
 
   return (
     <div>
       <Wrapper>
         <h3>Random Keto recipes</h3>
-        <Splide options={{
+        <Splide
+          options={{
             perPage: 4,
             arrows: false,
             pagination: false,
-            drag: 'free',
-            gap: '5rem'
-
-
-        }}>
+            drag: "free",
+            gap: "5rem",
+          }}
+        >
           {daily.map((recipe) => {
             return (
-              <SplideSlide>
+              <SplideSlide key={recipe.id}>
                 <Card>
-                  <p>{recipe.recipe}</p>
-                  <img src={recipe.image} alt={recipe.title} />
-                  <Gradient />
+                  <Link to={"/recipe/" + recipe.recipe}>
+                    <p>{recipe.recipe}</p>
+                    <img src={recipe.image} alt={recipe.title} />
+                    <Gradient />
+                  </Link>
                 </Card>
               </SplideSlide>
             );
@@ -73,7 +75,7 @@ const Card = styled.div`
     height: 100%;
     object-fit: cover;
   }
-   p{
+  p {
     position: absolute;
     z-index: 10;
     left: 50%;
@@ -96,7 +98,7 @@ const Gradient = styled.div`
   width: 100%;
   height: 100%;
   border-radius: 2rem;
-  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,5));
-`
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 5));
+`;
 
 export default Dailyketo;

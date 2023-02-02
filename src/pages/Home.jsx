@@ -1,5 +1,5 @@
 import Dailyketo from "../components/Dailyketo";
-import Veggie from "../components/Veggie";
+// import Veggie from "../components/Veggie";
 import React from 'react'
 
 const home = () => {
@@ -7,7 +7,7 @@ const home = () => {
     <div>
       
         <Dailyketo />
-        <Veggie />
+        {/* <Veggie /> */}
     </div>
   )
 }

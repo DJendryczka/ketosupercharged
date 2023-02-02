@@ -7,10 +7,19 @@ const Searched = () => {
     const [ searchedRecipes, setSearchedRecipes ] = useState([])
     let params = useParams()
 
+    const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key": `${process.env.REACT_APP_API_RAPID}`,
+          "X-RapidAPI-Host": "keto-diet.p.rapidapi.com",
+        },
+      };
+
     const getSearched = async (name) => {
-        const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`)
+        const data = await fetch(`https://keto-diet.p.rapidapi.com/?search=${name}`, options)
         const recipes = await data.json()
-        setSearchedRecipes(recipes.results)
+        setSearchedRecipes(recipes)
+        console.log(recipes)
     }
     useEffect(() => {
         getSearched(params.search)
@@ -22,7 +31,7 @@ const Searched = () => {
             return (
                 <Card key={item.id} >
                 <img src={item.image} alt='ALT' />
-                    <h4>{item.title}</h4>
+                    <h4>{item.recipe}</h4>
             </Card>
             )
         })}
