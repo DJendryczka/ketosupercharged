@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
@@ -8,10 +7,18 @@ const Cusine = () => {
     const [cusine, SetCusine] = useState([]);
     let params = useParams()
 
+    const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key": `${process.env.REACT_APP_API_RAPID}`,
+          "X-RapidAPI-Host": "keto-diet.p.rapidapi.com",
+        },
+      };
+
     const getCuisine = async (name) => {
-        const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}`)
+        const data = await fetch(`https://keto-diet.p.rapidapi.com/?search=${name}`, options)
         const recipes = await data.json()
-        SetCusine(recipes.results)
+        SetCusine(recipes)
     }
 
     useEffect(() =>{
@@ -22,10 +29,12 @@ const Cusine = () => {
     <Grid>
         {cusine.map((item) => {
             return(
+                <Link to={'/recipe/' + item.recipe}>
                 <Card key={item.id}>
                     <img src={item.image} alt='ALT' />
-                    <h4>{item.title}</h4>
+                    <h4>{item.recipe}</h4>
                 </Card>
+                </Link>
             )
         })}
     </Grid>

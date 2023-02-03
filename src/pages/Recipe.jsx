@@ -30,40 +30,48 @@ const Recipe = () => {
   }, [params.name]);
 
   return (
-
-    
     <DetailWrapper>
-        {details.map((item) => {
-            return (
-                <div>
-        <h2>{item.recipe}</h2>
-        <img src={item.image} alt="details.recipe" />
-        <h3>Difficulty: {item.difficulty}</h3>
-        <h3></h3>
-        <ul>
-            <li>{item.directions_step_1}</li>
-            <li>{item.directions_step_2}</li>
-            <li>{item.directions_step_3}</li>
-            <li>{item.directions_step_4}</li>
-            <li>{item.directions_step_5}</li>
-            <li>{item.directions_step_6}</li>
-            <li>{item.directions_step_7}</li>
-            <li>{item.directions_step_8}</li>
-            <li>{item.directions_step_9}</li>
-            <li>{item.directions_step_10}</li>
+      {details.map((item) => {
+        return (
+          <div>
+            <h2>{item.recipe}</h2>
+            <img src={item.image} alt="details.recipe" />
+            <h3>{item.category.category}</h3>
+            <h3>Difficulty: {item.difficulty}</h3>
 
-        </ul>
-      </div>
-            )
-        })}
-      
+            <p>{item.directions_step_1}</p>
+            <p>{item.directions_step_2}</p>
+            <p>{item.directions_step_3}</p>
+            <p>{item.directions_step_4}</p>
+            <p>{item.directions_step_5}</p>
+            <p>{item.directions_step_6}</p>
+            <p>{item.directions_step_7}</p>
+            <p>{item.directions_step_8}</p>
+            <p>{item.directions_step_9}</p>
+            <p>{item.directions_step_10}</p>
+          </div>
+        );
+      })}
+
       <Info>
-       
-        <div>
-          
-          <h3></h3>
-        </div>
-       
+        {details.map((item) => {
+          return (
+            <div>
+              <h2>Ingredients</h2>
+
+              <p>{item.measurement_1} {item.ingredient_1}</p>
+              <p>{item.measurement_2} {item.ingredient_2}</p>
+              <p>{item.measurement_3} {item.ingredient_3}</p>
+              <p>{item.measurement_4} {item.ingredient_4}</p>
+              <p>{item.measurement_5} {item.ingredient_5}</p>
+              <p>{item.measurement_6} {item.ingredient_6}</p>
+              <p>{item.measurement_7} {item.ingredient_7}</p>
+              <p>{item.measurement_8} {item.ingredient_8}</p>
+              <p>{item.measurement_9} {item.ingredient_9}</p>
+              <p>{item.measurement_10} {item.ingredient_10}</p>
+            </div>
+          );
+        })}
       </Info>
     </DetailWrapper>
   );
@@ -72,7 +80,7 @@ const DetailWrapper = styled.div`
   margin-top: 10rem;
   margin-bottom: 5rem;
   display: flex;
-  img{
+  img {
     width: 50%;
   }
   h2 {
@@ -90,7 +98,6 @@ const DetailWrapper = styled.div`
     margin-top: 2rem;
   }
 `;
-
 
 const Info = styled.div`
   margin-left: 10rem;

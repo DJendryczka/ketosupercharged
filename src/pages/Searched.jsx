@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const Searched = () => {
 
@@ -29,10 +30,12 @@ const Searched = () => {
     <Grid>
         {searchedRecipes.map((item) => {
             return (
+                <Link to={'/recipe/' + item.recipe}>
                 <Card key={item.id} >
                 <img src={item.image} alt='ALT' />
                     <h4>{item.recipe}</h4>
             </Card>
+            </Link>
             )
         })}
     </Grid>
