@@ -35,11 +35,22 @@ const Dailyketo = () => {
         <h3>Random Keto recipes</h3>
         <Splide
           options={{
-            perPage: 4,
+            perPage: 3,
             arrows: false,
             pagination: false,
             drag: "free",
             gap: "5rem",
+            breakpoints: {
+              1224: {
+                perPage: 2,
+               
+              },
+              767: {
+                perPage: 1,
+            
+              },
+             
+            }
           }}
         >
           {daily.map((recipe) => {
@@ -62,6 +73,7 @@ const Dailyketo = () => {
 };
 const Wrapper = styled.div`
   margin: 4rem 0rem;
+ 
 `;
 const Card = styled.div`
   min-height: 20rem;
