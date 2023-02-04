@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Link to={'/'}>
+      <Link to={'/'} style={{ textDecoration: 'none' }} >
       <h1>KETOSUPRCHARGED</h1>
       </Link>
       <Search />

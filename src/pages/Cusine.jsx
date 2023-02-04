@@ -30,7 +30,7 @@ const Cusine = () => {
     <Grid>
         {cusine.map((item) => {
             return(
-                <Link to={'/recipe/' + item.recipe} key={item.id}>
+                <Link to={'/recipe/' + item.recipe} key={item.id} style={{ textDecoration: 'none' }} >
                 <Card key={item.id}>
                     <img src={item.image} alt='ALT' />
                     <h4>{item.recipe}</h4>

@@ -19,7 +19,10 @@ h5, h1{
 h1{
   font-size: 3rem;
   padding: 2rem 0;
+  font-family: 'Lobster', cursive;
+  color: #f27121;
 }
+
 h4{
   font-size: 1rem;
   color:rgb(56, 56, 56);
@@ -29,6 +32,7 @@ h3{
   color:rgb(56, 56, 56);
   line-height: 2.5rem;
   margin: 2rem 0;
+  font-family: 'Lobster', cursive;
 }
 a{
   color:rgb(56, 56, 56);
