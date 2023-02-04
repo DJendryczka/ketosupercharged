@@ -9,7 +9,7 @@ const Dailyketo = () => {
 
   useEffect(() => {
     getDaily();
-  }, []);
+  });
 
   const options = {
     method: "GET",

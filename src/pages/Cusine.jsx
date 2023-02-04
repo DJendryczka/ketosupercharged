@@ -24,12 +24,13 @@ const Cusine = () => {
     useEffect(() =>{
         getCuisine(params.type)
         console.log(params.type)
+        // eslint-disable-next-line
     }, [params.type])
   return (
     <Grid>
         {cusine.map((item) => {
             return(
-                <Link to={'/recipe/' + item.recipe}>
+                <Link to={'/recipe/' + item.recipe} key={item.id}>
                 <Card key={item.id}>
                     <img src={item.image} alt='ALT' />
                     <h4>{item.recipe}</h4>

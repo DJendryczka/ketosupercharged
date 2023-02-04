@@ -36,7 +36,7 @@ const Slink = styled(NavLink)`
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    margin-right: 2rem;
+    margin-right: 1.8rem;
     text-decoration: none;
     background: linear-gradient(35deg, #494949, #313131);
     width: 6rem;
@@ -46,12 +46,9 @@ const Slink = styled(NavLink)`
 
     h4 {
         color: white;
-        font-size: 0.8rem
+        font-size: 1.2rem
     }
-    svg {
-        color: white;
-        font-size: 1.5rem;
-    }
+ 
     &.active {
         background: linear-gradient(to right, #f27121, #e94057);
         svg {
@@ -60,6 +57,17 @@ const Slink = styled(NavLink)`
         h4 {
             color: white;
         }
+    }
+    @media only screen and (max-width: 768px) {
+        margin-right: 0.8rem;
+        width: 4.5rem;
+        height: 4.5rem;
+       h4{
+        font-size: 0.8rem;
+       }
+
+
+
     }
 `
 

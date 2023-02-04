@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 const Recipe = () => {
   let params = useParams();
   const [details, setDetails] = useState([]);
-  const [activeTab, setActiveTab] = useState("instructions");
+  
 
   const options = {
     method: "GET",
@@ -27,17 +27,17 @@ const Recipe = () => {
 
   useEffect(() => {
     fetchDetails();
+    // eslint-disable-next-line
   }, [params.name]);
 
   return (
     <DetailWrapper>
       {details.map((item) => {
         return (
-          <div>
+          <div key={item.id}>
             <h2>{item.recipe}</h2>
             <img src={item.image} alt="details.recipe" />
             <h3>{item.category.category}</h3>
-            <h3>Difficulty: {item.difficulty}</h3>
 
             <p>{item.directions_step_1}</p>
             <p>{item.directions_step_2}</p>
@@ -56,7 +56,7 @@ const Recipe = () => {
       <Info>
         {details.map((item) => {
           return (
-            <div>
+            <div key={item.id}>
               <h2>Ingredients</h2>
 
               <p>{item.measurement_1} {item.ingredient_1}</p>
@@ -77,30 +77,27 @@ const Recipe = () => {
   );
 };
 const DetailWrapper = styled.div`
-  margin-top: 10rem;
-  margin-bottom: 5rem;
+  margin: 5rem;
+  
   display: flex;
   img {
-    width: 50%;
+    width: 60%;
   }
   h2 {
     margin-bottom: 2rem;
   }
-  .active {
-    background: linear-gradient(to right, #494949, #313131);
-    color: white;
+  @media only screen and (max-width: 768px){
+    flex-direction: column;
+    margin: 2rem
   }
-  li {
-    font-size: 1.2rem;
-    line-height: 2.5rem;
-  }
-  ul {
-    margin-top: 2rem;
-  }
+ 
 `;
 
 const Info = styled.div`
-  margin-left: 10rem;
+  margin: 0 2rem;
+  @media only screen and (max-width: 768px){
+    margin: 3rem;
+  }
 `;
 
 export default Recipe;

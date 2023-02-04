@@ -24,13 +24,14 @@ const Searched = () => {
     }
     useEffect(() => {
         getSearched(params.search)
+        // eslint-disable-next-line
     }, [params.search])
 
   return (
     <Grid>
         {searchedRecipes.map((item) => {
             return (
-                <Link to={'/recipe/' + item.recipe}>
+                <Link to={'/recipe/' + item.recipe} key={item.id}>
                 <Card key={item.id} >
                 <img src={item.image} alt='ALT' />
                     <h4>{item.recipe}</h4>
