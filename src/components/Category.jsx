@@ -5,27 +5,36 @@ import { NavLink } from 'react-router-dom';
 const Category = () => {
   return (
     <List>
-        <Slink to={'/cusine/chicken'}>
+        <Slink to={'/cusine/2'}>
            
-            <h4>Chicken</h4>
+            <h4>Appetizers</h4>
         </Slink>
-        <Slink to={'/cusine/beef'}>
+        <Slink to={'/cusine/1'}>
+            
+            <h4>Breakfast</h4>
+        </Slink>
+        <Slink to={'/cusine/3'}>
             
             <h4>Beef</h4>
         </Slink>
-        <Slink to={'/cusine/Pork'}>
+        <Slink to={'/cusine/4'}>
             
             <h4>Pork</h4>
         </Slink>
-        <Slink to={'/cusine/Fish'}>
+        <Slink to={'/cusine/6'}>
             
             <h4>Fish</h4>
+        </Slink>
+        <Slink to={'/cusine/5'}>
+            
+            <h4>Chiken</h4>
         </Slink>
     </List>
   )
 }
 const List = styled.div`
  display: flex;
+ flex-wrap: wrap;
  justify-content: center;
  margin: 2rem 0;
 
@@ -46,7 +55,7 @@ const Slink = styled(NavLink)`
 
     h4 {
         color: white;
-        font-size: 1.2rem
+        font-size: 1rem
     }
  
     &.active {

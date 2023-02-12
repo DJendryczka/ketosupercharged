@@ -69,7 +69,13 @@ const Recipe = () => {
               <p>{item.measurement_8} {item.ingredient_8}</p>
               <p>{item.measurement_9} {item.ingredient_9}</p>
               <p>{item.measurement_10} {item.ingredient_10}</p>
+              <h2>Macro</h2>
+              <p>Calories {item.calories}</p>
+              <p>Carbs in gr. {item.carbohydrates_in_grams}</p>
+              <p>Fat in gr. {item.fat_in_grams}</p>
+              <p>Protein in gr. {item.protein_in_grams}</p>
             </div>
+            
           );
         })}
       </Info>
@@ -81,7 +87,8 @@ const DetailWrapper = styled.div`
   
   display: flex;
   img {
-    width: 60%;
+    width: 80%;
+    border-radius: 1.2rem;
   }
   h2 {
     margin-bottom: 2rem;
@@ -95,6 +102,9 @@ const DetailWrapper = styled.div`
 
 const Info = styled.div`
   margin: 0 2rem;
+  h2{
+    margin: 1rem;
+  }
   @media only screen and (max-width: 768px){
     margin: 3rem;
   }

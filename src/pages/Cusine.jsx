@@ -16,7 +16,7 @@ const Cusine = () => {
       };
 
     const getCuisine = async (name) => {
-        const data = await fetch(`https://keto-diet.p.rapidapi.com/?search=${name}`, options)
+        const data = await fetch(`https://keto-diet.p.rapidapi.com/?category=${name}`, options)
         const recipes = await data.json()
         SetCusine(recipes)
     }
