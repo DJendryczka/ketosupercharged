@@ -16,7 +16,7 @@ function App() {
       <Category />
      <Pages />
      </BrowserRouter>
-     <h5>&copy; KetoSuperCharged.com 2023 | Created by Dariusz J</h5>
+     <h5>&copy; KetoSuperCharged.com 2023 | Created by <a href='https://dariuszjendryczka.com'>Dariusz J</a></h5>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { Link } from "react-router-dom";
+import Info from "./Info";
 
 const Dailyketo = () => {
   const [daily, setDaily] = useState([]);
@@ -32,6 +33,7 @@ const Dailyketo = () => {
   return (
     <div>
       <Wrapper>
+        <Info />
         <h3>All Keto recipes</h3>
         <Splide
           options={{
