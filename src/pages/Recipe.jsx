@@ -89,6 +89,7 @@ const DetailWrapper = styled.div`
   img {
     width: 80%;
     border-radius: 1.2rem;
+    min-height: 228px;
   }
   h2 {
     margin-bottom: 2rem;
