@@ -9,26 +9,31 @@ const Dailyketo = () => {
   const [daily, setDaily] = useState([]);
 
   useEffect(() => {
+    // Inline the fetch function so it's not an external dependency
+    const getDaily = async () => {
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key": process.env.REACT_APP_API_RAPID,
+          "X-RapidAPI-Host": "keto-diet.p.rapidapi.com",
+        },
+      };
+
+      try {
+        const response = await fetch(
+          "https://keto-diet.p.rapidapi.com/?protein_in_grams__lt=15&protein_in_grams__gt=5",
+          options
+        );
+        const data = await response.json();
+        setDaily(data);
+      } catch (error) {
+        console.error("Fetch error:", error);
+      }
+    };
+
+    // Call it once, when the component mounts
     getDaily();
-  });
-
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": `${process.env.REACT_APP_API_RAPID}`,
-      "X-RapidAPI-Host": "keto-diet.p.rapidapi.com",
-    },
-  };
-
-  const getDaily = async () => {
-    const api = await fetch(
-      "https://keto-diet.p.rapidapi.com/?protein_in_grams__lt=15&protein_in_grams__gt=5",
-      options
-    );
-    const data = await api.json();
-    console.log(data);
-    setDaily(data);
-  };
+  }, []);
 
   return (
     <div>
@@ -43,16 +48,9 @@ const Dailyketo = () => {
             drag: "free",
             gap: "5rem",
             breakpoints: {
-              1224: {
-                perPage: 2,
-               
-              },
-              767: {
-                perPage: 1,
-            
-              },
-             
-            }
+              1224: { perPage: 2 },
+              767: { perPage: 1 },
+            },
           }}
         >
           {daily.map((recipe) => {
@@ -61,7 +59,7 @@ const Dailyketo = () => {
                 <Card>
                   <Link to={"/recipe/" + recipe.recipe}>
                     <p>{recipe.recipe}</p>
-                    <img src={recipe.image} alt={recipe.title} />
+                    <img src={recipe.image} alt={recipe.recipe} />
                     <Gradient />
                   </Link>
                 </Card>
@@ -69,21 +67,21 @@ const Dailyketo = () => {
             );
           })}
         </Splide>
-        
       </Wrapper>
-      
     </div>
   );
 };
+
 const Wrapper = styled.div`
   margin: 4rem 0rem;
-  
- 
 `;
+
 const Card = styled.div`
   min-height: 20rem;
   border-radius: 2rem;
   overflow: hidden;
+  position: relative; /* to position absolutely the image/gradient */
+
   img {
     border-radius: 2rem;
     position: absolute;
@@ -109,13 +107,14 @@ const Card = styled.div`
     align-items: center;
   }
 `;
+
 const Gradient = styled.div`
   z-index: 3;
   position: absolute;
   width: 100%;
   height: 100%;
   border-radius: 2rem;
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 5));
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
 `;
 
 export default Dailyketo;
